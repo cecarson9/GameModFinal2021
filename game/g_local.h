@@ -840,6 +840,8 @@ typedef struct
 	int			health;
 	int			max_health;
 	int			savedFlags;
+	int			points;
+	int			round;
 
 	int			selected_item;
 	int			inventory[MAX_ITEMS];

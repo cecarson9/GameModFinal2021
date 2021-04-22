@@ -618,6 +618,8 @@ void InitClientPersistant (gclient_t *client)
 
 	client->pers.health			= 100;
 	client->pers.max_health		= 100;
+	client->pers.points			= 500;
+	client->pers.round			= 1;
 
 	client->pers.max_bullets	= 200;
 	client->pers.max_shells		= 100;
@@ -1586,6 +1588,9 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 			level.exitintermission = true;
 		return;
 	}
+
+	gi.bprintf(ent, 100, "Points: %i", client->pers.points);
+	gi.centerprintf(ent, "Round %i", client->pers.round);
 
 	pm_passent = ent;
 
