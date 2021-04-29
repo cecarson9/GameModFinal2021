@@ -842,6 +842,8 @@ typedef struct
 	int			savedFlags;
 	int			points;
 	int			round;
+	int			kills;
+	int			killsReq;
 
 	int			selected_item;
 	int			inventory[MAX_ITEMS];

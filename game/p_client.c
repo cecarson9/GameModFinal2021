@@ -620,6 +620,8 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.max_health		= 100;
 	client->pers.points			= 500;
 	client->pers.round			= 1;
+	client->pers.kills			= level.killed_monsters;
+	client->pers.killsReq		= 5;
 
 	client->pers.max_bullets	= 200;
 	client->pers.max_shells		= 100;
@@ -1589,8 +1591,19 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		return;
 	}
 
-	gi.bprintf(ent, 100, "Points: %i", client->pers.points);
-	gi.centerprintf(ent, "Round %i", client->pers.round);
+	gi.centerprintf(ent, "Points: %i", client->pers.points);
+	gi.dprintf("Round %i", client->pers.round);
+
+	if (client->pers.kills != level.killed_monsters) {
+		int k = level.killed_monsters - client->pers.kills;
+		client->pers.points += (k * 50);
+		client->pers.kills = level.killed_monsters;
+	}
+
+	if (client->pers.kills >= client->pers.killsReq) {
+		client->pers.round += 1;
+		client->pers.killsReq += (client->pers.round * 5);
+	}
 
 	pm_passent = ent;
 
