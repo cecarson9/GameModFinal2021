@@ -421,6 +421,9 @@ void soldier_pain (edict_t *self, edict_t *other, float kick, int damage)
 		return;
 	}
 
+	if (other->client) {
+		other->client->pers.points += 10;
+	}
 	self->pain_debounce_time = level.time + 3;
 
 	n = self->s.skinnum | 1;
