@@ -725,9 +725,7 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 	VectorScale (forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
 
-	for (int i = 0; i < 100; i++) {
-		fire_grenade(ent, start, forward, damage, 600, 2.5, radius);
-	}
+	fire_grenade(ent, start, forward, damage, 600, 2.5, radius);
 
 	gi.WriteByte (svc_muzzleflash);
 	gi.WriteShort (ent-g_edicts);

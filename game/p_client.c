@@ -1591,8 +1591,8 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		return;
 	}
 
-	gi.centerprintf(ent, "Points: %i", client->pers.points);
-	gi.dprintf("Round %i", client->pers.round);
+	gi.centerprintf(ent, "Round %i", client->pers.round);
+	gi.cprintf(ent, PRINT_HIGH, "Points: %i", client->pers.points);
 
 	if (client->pers.kills != level.killed_monsters) {
 		int k = level.killed_monsters - client->pers.kills;
